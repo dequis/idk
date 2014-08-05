@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Cloudstrap</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <style type="text/css">
+        table td {
+          padding: 5px 10px;
+        }
+        td.boats {
+          text-align: center;
+        }
+        td.asdasd {
+          text-align: left;
+        }
+        td.boats span.number {
+          font-size: 18px;
+          padding-left: 3px;
+        }
+        a.up {
+          color: #FF9973;
+        }
+        a.down {
+          color: #9999FF;
+        }
+        a.down span {
+          /*hue*/
+          transform: scaleY(-1);
+        }
+
+    </style>
+  </head>
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Emoticon voting simulator 2014</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <form class="navbar-form navbar-right" role="form">
+            <div class="form-group">
+              <input type="text" placeholder="Email" class="form-control">
+            </div>
+            <div class="form-group">
+              <input type="password" placeholder="Password" class="form-control" id="hue">
+            </div>
+            <button type="button" class="btn btn-success" onclick="$('#hue').attr('placeholder', 'Huehuehue'); return false">This doesn't do anything</button>
+          </form>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </div>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Emoticon voting simulator 2014</h1>
+        <p class="lead">"The facebook of shitposting" - Kotaku</p>
+
+        <div class="row">
+          <div class="col-xs-4 col-xs-offset-4">
+            <div class="text-center">
+              <form action="/add" class="form" method="post">
+                <div class="form-group">
+                  <label for="name">Add your favorite emoticons!!!!</label>
+                  <input type="text" name="name" value="" class="form-control form-horizontal text-center" />
+                </div>
+                <button type="submit" class="btn btn-submit btn-block btn-lg btn-primary">Add</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+        {% if message %}
+        {{message}}
+        {% endif %}
+
+        <div class="text-center">
+        <table>
+        {% for emo in emoticons %}
+          <tr>
+            <td class="boats">
+              <a class="up" href="/vote/up/{{emo.name|urlencode}}"><span class="glyphicon glyphicon-arrow-up"></span></a><br>
+              <span class="number">{{emo.votes}}</span><br/>
+              <a class="down" href="/vote/down/{{emo.name|urlencode}}"><span class="glyphicon glyphicon-arrow-up"></span></a>
+            </td>
+            <td class="asdasd">
+              <code style="font-size: 48px">{{emo.name}}</code><br />
+            </td>
+          </tr>
+        {% endfor %}
+        </table>
+        </div>
+
+    </div>
+    <a href="https://sourceforge.net"><img style="position: fixed; bottom: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/52760788cde945287fbb584134c4cbc2bc36f904/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f77686974655f6666666666662e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png"></a>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+  </body>
+</html>
