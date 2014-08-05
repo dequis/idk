@@ -16,3 +16,19 @@ database configuration goes in a file called `dual_ec_drbg` with `username:passw
 ## database schema
 
 ![](http://dump.dequis.org/8QHRf.png)
+
+## deploying to production
+
+start tmux, python2 main.py
+
+nginx config:
+
+    server {
+        server_name idk.dequis.org;
+        root /what;
+        location / {
+            proxy_pass http://localhost:8000/;
+        }
+    }
+
+[link to production server (do not hack pls)](http://idk.dequis.org)
