@@ -36,6 +36,11 @@ def vote(where, what):
         existing.commit()
     return redirect("/")
 
+@route('/permalink/<what>')
+@view('index')
+def permalink(what):
+    return dict(emoticons=[find_shit(get_all_shit(), what)])
+
 @post('/add')
 @view('index')
 def add():
