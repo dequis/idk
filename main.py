@@ -10,7 +10,14 @@ class Emoticon(butterdb.Model):
         self.name = self.field(name)
         self.votes = self.field(votes)
 
-get_all_shit = lambda: sorted(Emoticon.get_instances(), key=lambda x: float(x.votes), reverse=True)
+def getderp():
+    try:
+        return Emoticon.get_instances()
+    except:
+        import os
+        os.kill(os.getpid(), 15)
+
+get_all_shit = lambda: sorted(getderp(), key=lambda x: float(x.votes), reverse=True)
 
 # idk man give me a break i'm too old for this shit
 fuck_python2 = lambda x: x.decode("utf-8", "replace") if isinstance(x, bytes) else x
