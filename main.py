@@ -72,4 +72,4 @@ def add():
     Emoticon(fuck_python2(name), 0).commit()
     return redirect("/")
 
-run(server='flup', bindAddress="./fcgi.sock")
+run(server='flup', bindAddress="./fcgi.sock", umask=000)
