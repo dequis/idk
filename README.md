@@ -10,7 +10,7 @@ depends on [gspread][], [jinja2][], [bottle.py][] and [butterdb][] (AKA fuckitdb
 
 database configuration goes in a file called `dual_ec_drbg` with `username:password`
 
-[link to production server (do not hack pls)](http://idk.dequis.org)
+[link to production server](http://idk.dequis.org) (do not hack pls)
 
 ## screenshot
 
@@ -41,4 +41,4 @@ nginx config:
 [gspread]: https://github.com/burnash/gspread
 [jinja2]: http://jinja.pocoo.org/
 [bottle.py]: http://bottlepy.org/
-[clouderdb]: https://github.com/Widdershin/butterdb/
+[butterdb]: https://github.com/Widdershin/butterdb/
