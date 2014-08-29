@@ -6,9 +6,11 @@ idk
                 and give zero fucks about scalability or good practices
     00:18 <@Wally> HELL YES LETS DO IT
 
-depends on gspread, jinja2. includes bundled bottle.py and clouderdb (AKA fuckitdb)
+depends on [gspread][], [jinja2][]. includes bundled [bottle.py][] and [clouderdb][] (AKA fuckitdb)
 
 database configuration goes in a file called `dual_ec_drbg` with `username:password`
+
+[link to production server (do not hack pls)](http://idk.dequis.org)
 
 ## screenshot
 
@@ -36,5 +38,7 @@ nginx config:
         }
     }
 
-
-[link to production server (do not hack pls)](http://idk.dequis.org)
+[gspread]: https://github.com/burnash/gspread
+[jinja2]: http://jinja.pocoo.org/
+[bottle.py]: http://bottlepy.org/
+[clouderdb]: https://github.com/Widdershin/butterdb/
