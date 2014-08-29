@@ -1,2 +1,4 @@
 jinja2
 gspread
+bottle
+-e git://github.com/Widdershin/butterdb.git#egg=butterdb

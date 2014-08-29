@@ -6,7 +6,7 @@ idk
                 and give zero fucks about scalability or good practices
     00:18 <@Wally> HELL YES LETS DO IT
 
-depends on [gspread][], [jinja2][]. includes bundled [bottle.py][] and [clouderdb][] (AKA fuckitdb)
+depends on [gspread][], [jinja2][], [bottle.py][] and [butterdb][] (AKA fuckitdb)
 
 database configuration goes in a file called `dual_ec_drbg` with `username:password`
 
