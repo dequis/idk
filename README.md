@@ -19,7 +19,9 @@ database configuration goes in a file called `dual_ec_drbg` with `username:passw
 
 ## deploying to production
 
-start tmux, python2 main.py
+now with fastcgi because i was kinda tired of the thing dying all the time
+
+start tmux, python2 main.py, chmod 777 fcgi.sock
 
 nginx config:
 
@@ -27,8 +29,11 @@ nginx config:
         server_name idk.dequis.org;
         root /what;
         location / {
-            proxy_pass http://localhost:8000/;
+            include fastcgi_params;
+            fastcgi_param SCRIPT_NAME "";
+            fastcgi_pass unix:/home/dx/web/idk/fcgi.sock;
         }
     }
+
 
 [link to production server (do not hack pls)](http://idk.dequis.org)

@@ -1,21 +1,32 @@
-from bottle import route, run, post, request, redirect
+from bottle import route, run, post, request, redirect, urlunquote
 from bottle import jinja2_view as view
 import butterdb
 import math
-database = butterdb.Database("emoticons", *(open("dual_ec_drbg").read().strip().split(":")))
+import traceback
+import urllib
 
-@butterdb.register(database)
-class Emoticon(butterdb.Model):
-    def __init__(self, name, votes):
-        self.name = self.field(name)
-        self.votes = self.field(votes)
+database = None
+Emoticon = None
+
+def init_db():
+    global database, Emoticon
+    database = butterdb.Database("emoticons", *(open("dual_ec_drbg").read().strip().split(":")))
+
+    @butterdb.register(database)
+    class Emoticon(butterdb.Model):
+        def __init__(self, name, votes):
+            self.name = self.field(name)
+            self.votes = self.field(votes)
+
+init_db()
 
 def getderp():
     try:
         return Emoticon.get_instances()
     except:
-        import os
-        os.kill(os.getpid(), 15)
+        traceback.print_exc()
+        init_db()
+        return getderp()
 
 get_all_shit = lambda: sorted(getderp(), key=lambda x: float(x.votes), reverse=True)
 
@@ -37,7 +48,7 @@ DIRECTIONS = {
 
 @route('/vote/<where>/<what>')
 def vote(where, what):
-    existing = find_shit(get_all_shit(), what)
+    existing = find_shit(get_all_shit(), urlunquote(what))
     if existing:
         existing.votes = float(existing.votes) + DIRECTIONS.get(where, 0)
         existing.commit()
@@ -46,7 +57,7 @@ def vote(where, what):
 @route('/permalink/<what>')
 @view('index')
 def permalink(what):
-    return dict(emoticons=[find_shit(get_all_shit(), what)])
+    return dict(emoticons=[find_shit(get_all_shit(), urlunquote(what))])
 
 @post('/add')
 @view('index')
@@ -61,4 +72,4 @@ def add():
     Emoticon(fuck_python2(name), 0).commit()
     return redirect("/")
 
-run(host='localhost', port=8080, debug=True, reloader=True)
+run(server='flup', bindAddress="./fcgi.sock")

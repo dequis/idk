@@ -1,1 +1,3 @@
 *.pyc
+fcgi.sock
+dual_ec_drbg
